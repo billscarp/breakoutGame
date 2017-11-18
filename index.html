@@ -18,8 +18,14 @@
 const canvas = document.getElementById('myCanvas');
     // store 2d rendering contex used for painting on canvas
 var ctx = canvas.getContext('2d');
+
+// define a starting point at the bottom center part of the Canvas in variables called x and y
 var x = canvas.width/2;
 var y = canvas.height-30;
+
+// add a small value to x and y after every frame has been drawn to make it appear that the ball is moving
+var dx = 2;
+var dy = -2;
 
 function draw(){
     ctx.beginPath();
@@ -27,6 +33,8 @@ function draw(){
     ctx.fillStyle = "#0095DD";
     ctx.fill();
     ctx.closePath();
+    x += dx;
+    y += dy;
 }
 setInterval(draw, 10);
 </script>
