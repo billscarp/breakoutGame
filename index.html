@@ -1,73 +1,93 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <title>Break Out Game</title>
     <style>
-    	* { padding: 0; margin: 0; }
-    	canvas { background: #eee; display: block; margin: 0 auto; }
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        canvas {
+            background: #eee;
+            display: block;
+            margin: 0 auto;
+        }
     </style>
 </head>
+
 <body>
 
-<canvas id="myCanvas" width="480" height="320"></canvas>
+    <canvas id="myCanvas" width="480" height="320"></canvas>
 
-<script>
-    // render graphics on canvas element
-    // reference to canvas element
-const canvas = document.getElementById('myCanvas');
-    // store 2d rendering contex used for painting on canvas
-var ctx = canvas.getContext('2d');
+    <script>
+        // render graphics on canvas element
+        // reference to canvas element
+        const canvas = document.getElementById('myCanvas');
+        // store 2d rendering contex used for painting on canvas
+        var ctx = canvas.getContext('2d');
 
-// define a starting point at the bottom center part of the Canvas in variables called x and y
-var x = canvas.width/2;
-var y = canvas.height-30;
+        // define a starting point at the bottom center part of the Canvas in variables called x and y
+        var x = canvas.width / 2;
+        var y = canvas.height - 30;
 
-// add a small value to x and y after every frame has been drawn to make it appear that the ball is moving
-var dx = 2;
-var dy = -2;
+        // add a small value to x and y after every frame has been drawn to make it appear that the ball is moving
+        var dx = 2;
+        var dy = -2;
 
-var ballRadius = 10;
+        var ballRadius = 10;
 
-// paddle
+        // paddle
 
-var paddleHeight = 10;
-var paddleWidth = 75;
-var paddleX = (canvas.width-paddleWidth)/2;
+        var paddleHeight = 10;
+        var paddleWidth = 75;
+        var paddleX = (canvas.width - paddleWidth) / 2;
+
+        // left and right buttons
+
+        var rightPressed = false;
+        var leftPressed = false;
 
 
-function drawBall(){
-    ctx.beginPath();
-    ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-    ctx.fillStyle = "#F1C40F";
-    ctx.fill();
-    ctx.closePath();
-}
+        function drawBall() {
+            ctx.beginPath();
+            ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+            ctx.fillStyle = "#F1C40F";
+            ctx.fill();
+            ctx.closePath();
+        }
 
-// function to to define h+w of paddle
-function drawPaddle(){
-    ctx.beginPath();
-    ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
-    ctx.fillStyle = "#0095DD";
-    ctx.fill();
-    ctx.closePath();
-}
+        // function to to define h+w of paddle
+        function drawPaddle() {
+            ctx.beginPath();
+            ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
+            ctx.fillStyle = "#0095DD";
+            ctx.fill();
+            ctx.closePath();
+        }
 
-function draw(){
-    ctx.clearRect(0,0, canvas.width, canvas.height);
-    drawBall();
-  
-    if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
-        dx = -dx;
-    }
-    if(y + dy > canvas.height-ballRadius || y + dy < ballRadius){
-        dy = -dy;
-    }
-    x += dx;
-    y += dy;
-}
-setInterval(draw, 10);
-</script>
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBall();
+
+            if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+                dx = -dx;
+            }
+            if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
+                dy = -dy;
+            }
+            x += dx;
+            y += dy;
+        }
+        // event listeners
+        document.addEventListener('keydown', keyDownHandler, false);
+        document.addEventListener('keyup', keyUpHandler, false);
+
+        setInterval(draw, 10);
+    </script>
 
 </body>
+
 </html>
