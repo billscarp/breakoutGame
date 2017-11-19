@@ -11,7 +11,8 @@
         }
 
         canvas {
-            background: #eee;
+            /* background: #eee; */
+            background-image: url("stars.png");
             display: block;
             margin: 0 auto;
         }
@@ -20,7 +21,7 @@
 
 <body>
 
-    <canvas id="myCanvas" width="480" height="320"></canvas>
+    <canvas id="myCanvas" width="680" height="420"></canvas>
 
     <script>
         // render graphics on canvas element
@@ -53,7 +54,7 @@
         // Bricks
 
         let brickRowCount = 3;
-        let brickColumnCount = 6;
+        let brickColumnCount = 9;
         let brickWidth = 65;
         let brickHeight = 20;
         let brickPadding = 2;
@@ -167,7 +168,7 @@
                         dy = -dy;
                     }
                 } else {
-                    alert("GAME OVER");
+                    // alert("GAME OVER");
                     document.location.reload();
                 }
             }
